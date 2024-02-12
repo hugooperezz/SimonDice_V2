@@ -146,9 +146,11 @@ public class engine {
 	 * @return
 	 */
 	boolean usarAyuda(int _index) {
-		_index = AYUDAS;
+		AYUDAS = 3;
 		if (AYUDAS > 0) {
+			AYUDAS--;
 			return true;
+			
 		} else {
 			System.out.println("No quedan ayudas disponibles.");
 			return false;
@@ -241,8 +243,8 @@ public class engine {
 							break;
 						}
 					} else {
-						usarAyuda(j);
-						if (usarAyuda(0) == true) {
+						usarAyuda(AYUDAS);
+						if (usarAyuda(AYUDAS) == true) {
 							System.out.println("El color es " + secuenciaColores[j]);
 						} else {
 							System.out.println("No te quededan ayudas");
@@ -291,8 +293,8 @@ public class engine {
 
 						}
 					} else {
-						usarAyuda(j);
-						if (usarAyuda(0) == true) {
+						usarAyuda(AYUDAS);
+						if (usarAyuda(AYUDAS) == true) {
 							System.out.println("El color es " + secuenciaColores[j]);
 						} else {
 							System.out.println("No te quedan ayudas");
