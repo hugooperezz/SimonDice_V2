@@ -194,6 +194,7 @@ public class engine {
 	 * Metodo para que se ejecute el programa
 	 */
 	public void play() {
+		int puntuacion = 0;
 		// Introducir numeros para empezar a jugar
 		System.out.println("");
 		System.out.println("Presiona-1 para modo Facil");
@@ -233,9 +234,11 @@ public class engine {
 					if (letraColor != 'x' && letraColor != 'X') {
 						if (comprobarColor(j, Color_Elegido)) {
 							System.out.println("Color correcto");
+							puntuacion =+ 2;
 						} else {
 							System.out.println("Has fallado");
-							play();
+							menu();
+							break;
 						}
 					} else {
 						usarAyuda(j);
@@ -281,7 +284,7 @@ public class engine {
 							System.out.println("Color correcto");
 						} else {
 							System.out.println("Has fallado");
-							play();
+							menu();
 						}
 					} else {
 						usarAyuda(j);
