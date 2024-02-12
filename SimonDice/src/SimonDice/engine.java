@@ -234,9 +234,9 @@ public class engine {
 					if (letraColor != 'x' && letraColor != 'X') {
 						if (comprobarColor(j, Color_Elegido)) {
 							System.out.println("Color correcto");
-							puntuacion =+ 2;
+							puntuacion = +2;
 						} else {
-							System.out.println("Has fallado");
+							System.out.println("Has fallado con " + puntuacion + " puntos");
 							menu();
 							break;
 						}
@@ -282,9 +282,11 @@ public class engine {
 					if (letraColor != 'x' && letraColor != 'X') {
 						if (comprobarColor(j, Color_Elegido)) {
 							System.out.println("Color correcto");
+							puntuacion = +2;
 						} else {
-							System.out.println("Has fallado");
+							System.out.println("Has fallado con " + puntuacion + " puntos");
 							menu();
+
 						}
 					} else {
 						usarAyuda(j);
