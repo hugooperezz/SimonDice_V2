@@ -244,6 +244,8 @@ public class engine {
 						usarAyuda(j);
 						if (usarAyuda(0) == true) {
 							System.out.println("El color es " + secuenciaColores[j]);
+						} else {
+							System.out.println("No te quededan ayudas");
 						}
 					}
 
@@ -292,6 +294,8 @@ public class engine {
 						usarAyuda(j);
 						if (usarAyuda(0) == true) {
 							System.out.println("El color es " + secuenciaColores[j]);
+						} else {
+							System.out.println("No te quedan ayudas");
 						}
 					}
 				}
