@@ -11,10 +11,10 @@ public class engine {
 	public enum tColores {
 		Rojo, Dorado, Verde, Azul, Blanco, Marron, Naranja
 	}
-	
+
 	public enum tMode {
-        FACIL, DIFICIL
-    }
+		FACIL, DIFICIL
+	}
 
 	static int MAX_COLORES_SEQ = 15;
 	static int MAX_COLORES_SEQ_FACIL = 4;
@@ -137,30 +137,72 @@ public class engine {
 	 * @return
 	 */
 	boolean usarAyuda(int _index) {
-		if (_index > 0) {
-            _index--;
-            return true;
-
-        } else {
-            System.out.println("No quedan ayudas disponibles.");
-            return false;
-        }
-    }
+		if (AYUDAS > 0) {
+			System.out.println("Tienes " + AYUDAS + " ayudas");
+			AYUDAS--;
+			System.out.println("Te quedan " + AYUDAS + " ayudas ");
+			System.out.println("El siguiente color es " + secuenciaColores[_index]);
+			return true;
+		} else {
+			System.out.println("No tienes ayudas suficientes");
+			return false;
+		}
+	}
 
 	/*
 	 * Metodo para que muestre el mensaje de biembenida al jugador
 	 */
 	public void inicio() {
-		// Memsaje de biembenida
-		System.out.println("Biembenido a Simon Dice");
-		
+		Record record = new Record();
+
+		// Crear jugadores
+		persona jugador = new persona("Hugo", 30);
+		persona jugador1 = new persona("Ivan", 20);
+		persona jugador2 = new persona("Caye", 10);
+
+		// Añadir jugadores al registro
+		record.añadirJugador(jugador);
+		record.añadirJugador(jugador1);
+		record.añadirJugador(jugador2);
+
+		// Mensaje de bienvenida
+		System.out.println("Bienvenido a Simon Dice");
+
+		// Solicitar el nombre del jugador
 		System.out.print("Introduce tu nombre: ");
 		Scanner scNombre = new Scanner(System.in);
 		String nombre = scNombre.nextLine();
-		System.out.println("");
-		System.out.println("Biembenido a Simon Dice " + nombre);
+		jugador.setNombre(nombre);
+		System.out.println("¡Bienvenido, " + jugador.getNombre() + "!");
 
+		// Mostrar menú
 		menu();
+
+		// Leer la opción del menú
+		Scanner scanner = new Scanner(System.in);
+		int opcion = scanner.nextInt();
+
+		// Procesar la opción del menú
+		switch (opcion) {
+		case 1:
+			System.out.println("¡Gracias por jugar!");
+			break;
+		case 2:
+			jugador.setPuntuacion(play(tMode.FACIL));
+			break;
+		case 3:
+			jugador.setPuntuacion(play(tMode.DIFICIL));
+			break;
+		case 4:
+			record.showRanking();
+			break;
+		case 5:
+			record.showBestPlayer();
+			break;
+		default:
+			System.out.println("Opción no válida");
+			break;
+		}
 	}
 
 	/**
@@ -168,37 +210,23 @@ public class engine {
 	 */
 	public void menu() {
 		System.out.println("");
-		System.out.println("Presiona-1 para salir");
-		System.out.println("");
-		System.out.println("Presiona-2 para jugar");
-
-		Scanner menu = new Scanner(System.in);
-		int _menu = menu.nextInt();
-
-		// Introducir numeros para empezar a jugar
-		if (_menu == 1) {
-			System.out.println("Saliste del juego");
-		} else if (_menu == 2) {
-			play();
-		}
+		System.out.println("1--Salir");
+		System.out.println("2--Jugar Modo Facil");
+		System.out.println("3--Jugar Modo Dificil");
+		System.out.println("4--Mostrar Ranking");
+		System.out.println("5--Mostrar el mejor Ranking");
 	}
 
 	/*
 	 * Metodo para que se ejecute el programa
 	 */
-	public void play() {
+	public int play(tMode _modo) {
 		int puntuacion = 0;
 		// Elegir el modo de juego
-		System.out.println("");
-		System.out.println("Presiona-1 para modo Facil");
-		System.out.println("");
-		System.out.println("Presiona-2 para modo Dificil");
-		Scanner modo = new Scanner(System.in);
-		int _modo = modo.nextInt();
 
-		if (_modo == 1) {
+		if (_modo == tMode.FACIL) {
 			generarSecuencia(MAX_COLORES_SEQ_FACIL);
-		} else if (_modo == 2) {
+		} else if (_modo == tMode.DIFICIL) {
 			generarSecuencia(MAX_COLORES_SEQ_DIFICIL);
 		}
 
@@ -208,9 +236,9 @@ public class engine {
 			System.out.println(" ");
 
 			// Mostrar la secuencia
-			if (_modo == 1) {
+			if (_modo == tMode.FACIL) {
 				mostrarSecuencia(MAX_COLORES_SEQ_FACIL + i);
-			} else if (_modo == 2) {
+			} else if (_modo == tMode.DIFICIL) {
 				mostrarSecuencia(MAX_COLORES_SEQ_DIFICIL + i);
 
 			}
@@ -240,24 +268,30 @@ public class engine {
 				if (letraColor != 'x' && letraColor != 'X') {
 					if (comprobarColor(j, Color_Elegido)) {
 						System.out.println("Color correcto");
+						if (_modo == tMode.FACIL) {
+							puntuacion = +2;
+						} else {
+							puntuacion = +4;
+						}
 						puntuacion = +2;
 					} else {
 						System.out.println("Has fallado con " + puntuacion + " puntos");
-						menu();
+						inicio();
 						break;
 					}
 				} else {
-					usarAyuda(3);
-					if (usarAyuda(3) == true) {
-
-						System.out.println("El color es " + secuenciaColores[j]);
+					usarAyuda(j);
+					if (_modo == tMode.FACIL) {
+						puntuacion = -8;
 					} else {
-						System.out.println("No te quedan ayudas");
+						puntuacion = -16;
 					}
+
 				}
 				j++;
 			}
 			i++;
 		}
+		return puntuacion;
 	}
 }

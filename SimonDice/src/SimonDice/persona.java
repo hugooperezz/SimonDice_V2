@@ -1,49 +1,38 @@
 package SimonDice;
 
 public class persona {
-	private String[] nombres;
+	private int puntuacion;
+	private String name;
 
-	// Constructor que inicializa el array de nombres con un tamaño específico
-	public persona() {
-		nombres = new String[10];
+	public persona(String _nombre, int _puntos) {
+		this.name = _nombre;
+		this.puntuacion = _puntos;
 	}
 
-	// Método para agregar un nombre al array
-	public void agregarNombre(int indice, String nombre) {
-		if (indice >= 0 && indice < nombres.length) {
-			nombres[indice] = nombre;
-		} else {
-			System.out.println("Índice fuera de rango.");
-		}
+	public String getNombre() {
+		return name;
 	}
 
-	// Método para obtener un nombre del array
-	public String obtenerNombre(int indice) {
-		if (indice >= 0 && indice < nombres.length) {
-			return nombres[indice];
-		} else {
-			System.out.println("Índice fuera de rango.");
-			return null;
-		}
+	public void setNombre(String _nombre) {
+		this.name = _nombre;
 	}
 
-	// Método para imprimir todos los nombres del array
-	public void imprimirNombres() {
-		System.out.println("Nombres de los usuarios:");
-		for (String nombre : nombres) {
-			if (nombre != null) {
-				System.out.println(nombre);
-			}
-		}
+	/**
+	 * Metodo que nos perdimete ponerle una puntuacion al jugador 0(1)
+	 * 
+	 * @param _puntos numero al que quieres igualar
+	 */
+
+	public void setPuntuacion(int _puntos) {
+		this.puntuacion = _puntos;
 	}
 
-	// Método getter para obtener el array de nombres
-	public String[] getNombres() {
-		return nombres;
-	}
-
-	// Método setter para establecer el array de nombres
-	public void setNombres(String[] nombres) {
-		this.nombres = nombres;
+	/**
+	 * Metodo que nos permite saber la puntuacion del jugador 0(1)
+	 * 
+	 * @return
+	 */
+	public int getPuntuacion() {
+		return this.puntuacion;
 	}
 }
