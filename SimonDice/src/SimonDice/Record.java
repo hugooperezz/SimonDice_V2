@@ -3,11 +3,11 @@ package SimonDice;
 public class Record {
 	final int MAX_JUGADORES = 20;
 	private persona[] jugadores;
-	private int contador;
+	private int cuenta;
 
 	public Record() {
 		this.jugadores = new persona[MAX_JUGADORES];
-		this.contador = 0;
+		this.cuenta = 0;
 	}
 
 	/**
@@ -16,9 +16,9 @@ public class Record {
 	 * @param jugador
 	 */
 	public void añadirJugador(persona jugador) {
-		if (contador < MAX_JUGADORES) {
-			this.jugadores[contador] = jugador;
-			this.contador++;
+		if (cuenta < MAX_JUGADORES) {
+			this.jugadores[cuenta] = jugador;
+			this.cuenta++;
 		} else {
 			System.out.println("No se pueden añadir más jugadores. Se ha alcanzado el límite.");
 		}
@@ -30,7 +30,7 @@ public class Record {
 	public void showRanking() {
 		ordenarJugadores();
 		System.out.println("Ranking de los 10 mejores jugadores:");
-		int limite = Math.min(contador, 10);
+		int limite = Math.min(cuenta, 10);
 		for (int i = 0; i < limite; i++) {
 			System.out.println((i + 1) + ". " + jugadores[i].getNombre() + ": " + jugadores[i].getPuntuacion());
 		}
@@ -44,7 +44,7 @@ public class Record {
 		System.out.println("Mejor jugador:");
 		int topJugador = jugadores[0].getPuntuacion(); // Variable que guarda al jugador de la posicion 0
 		int i = 0;
-		while (i < contador - 1) {
+		while (i < cuenta - 1) {
 			if (jugadores[i].getPuntuacion() == topJugador) {
 				System.out.println(jugadores[i].getNombre() + ": " + topJugador);
 			} else {
@@ -58,8 +58,8 @@ public class Record {
 	 * Metodo que ordena el array mediante el metodo de la burbuja
 	 */
 	private void ordenarJugadores() {
-		for (int i = 0; i < contador; i++) {
-			for (int j = 0; j < (contador - i - 1); j++) {
+		for (int i = 0; i < cuenta; i++) {
+			for (int j = 0; j < (cuenta - i - 1); j++) {
 				if (jugadores[j].getPuntuacion() < jugadores[j + 1].getPuntuacion()) {
 					persona temp = jugadores[j + 1];
 					jugadores[j + 1] = jugadores[j];
