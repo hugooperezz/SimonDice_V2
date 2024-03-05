@@ -42,16 +42,18 @@ public class Record {
 	public void showBestPlayer() {
 		ordenarJugadores();
 		System.out.println("Mejor jugador:");
-		int maxPuntuacion = jugadores[0].getPuntuacion(); // Variable que guarda al jugador de la posicion 0
-		for (int i = 0; i < contador; i++) {
-			if (jugadores[i].getPuntuacion() == maxPuntuacion) {
-				System.out.println(jugadores[i].getNombre() + ": " + maxPuntuacion);
+		int topJugador = jugadores[0].getPuntuacion(); // Variable que guarda al jugador de la posicion 0
+		int i = 0;
+		while (i < contador - 1) {
+			if (jugadores[i].getPuntuacion() == topJugador) {
+				System.out.println(jugadores[i].getNombre() + ": " + topJugador);
 			} else {
 				break; // Salir del bucle cuando ya no haya jugadores con la máxima puntuación
 			}
+			i++;
 		}
 	}
-	
+
 	/**
 	 * Metodo que ordena el array mediante el metodo de la burbuja
 	 */

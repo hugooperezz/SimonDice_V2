@@ -11,7 +11,10 @@ public class engine {
 	public enum tColores {
 		Rojo, Dorado, Verde, Azul, Blanco, Marron, Naranja
 	}
-
+	
+	/**
+	 * Metodo para los modos de juegos
+	 */
 	public enum tMode {
 		FACIL, DIFICIL
 	}
@@ -159,11 +162,17 @@ public class engine {
 		persona jugador = new persona("Hugo", 30);
 		persona jugador1 = new persona("Ivan", 20);
 		persona jugador2 = new persona("Caye", 10);
+		persona jugador3 = new persona("Esco", 40);
+		persona jugador4 = new persona("Santi", 65);
+		persona jugador5 = new persona("Hecto", 100);
 
 		// Añadir jugadores al registro
 		record.añadirJugador(jugador);
 		record.añadirJugador(jugador1);
 		record.añadirJugador(jugador2);
+		record.añadirJugador(jugador3);
+		record.añadirJugador(jugador4);
+		record.añadirJugador(jugador5);
 
 		// Mensaje de bienvenida
 		System.out.println("Bienvenido a Simon Dice");
@@ -195,9 +204,11 @@ public class engine {
 			break;
 		case 4:
 			record.showRanking();
+			menu();
 			break;
 		case 5:
 			record.showBestPlayer();
+			menu();
 			break;
 		default:
 			System.out.println("Opción no válida");
