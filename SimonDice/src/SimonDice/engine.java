@@ -69,7 +69,7 @@ public class engine {
 	 * @param _numero
 	 * @return
 	 */
-	public static tColores intToColor(int _numero) {
+	public tColores intToColor(int _numero) {
 		tColores numeros = null;
 		switch (_numero) {
 		case 1:
@@ -159,6 +159,7 @@ public class engine {
 		Record record = new Record();
 
 		// Crear jugadores
+		persona jugadorActual = new persona ("",0);
 		persona jugador = new persona("Hugo", 30);
 		persona jugador1 = new persona("Ivan", 20);
 		persona jugador2 = new persona("Caye", 10);
@@ -181,8 +182,8 @@ public class engine {
 		System.out.print("Introduce tu nombre: ");
 		Scanner scNombre = new Scanner(System.in);
 		String nombre = scNombre.nextLine();
-		jugador.setNombre(nombre);
-		System.out.println("¡Bienvenido, " + jugador.getNombre() + "!");
+		jugadorActual.setNombre(nombre);
+		System.out.println("¡Bienvenido, " + jugadorActual.getNombre() + "!");
 
 		// Mostrar menú
 		menu();
@@ -204,10 +205,12 @@ public class engine {
 			break;
 		case 4:
 			record.showRanking();
+			System.out.println("");
 			menu();
 			break;
 		case 5:
 			record.showBestPlayer();
+			System.out.println("");
 			menu();
 			break;
 		default:
